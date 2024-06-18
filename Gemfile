@@ -1,35 +1,35 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.2.3"
 
-# Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
+# Rails framework
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+# Asset pipeline
 gem "sprockets-rails"
 
-# Use postgresql as the database for Active Record
+# Database adapter
 gem "pg", "~> 1.1"
 
-# Use the Puma web server [https://github.com/puma/puma]
+# Web server
 gem "puma", ">= 5.0"
 
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem "importmap-rails"
+# JavaScript modules with ESM import maps
+gem "importmap-rails", "~> 2.0.1"
 
-# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
-gem "turbo-rails"
+# Hotwire Turbo
+gem "turbo-rails", "~> 2.0.5"
 
-# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
-gem "stimulus-rails"
+# Stimulus JS framework
+gem "stimulus-rails", "~> 1.3.3"
 
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+# Build JSON APIs with Jbuilder
 gem "jbuilder"
 
-# Put faker
+# Faker for generating fake data
 gem "faker"
 
-# Paginate
+# Pagination gem
 gem 'will_paginate', '~> 4.0'
 
 # Search gem
@@ -38,56 +38,58 @@ gem "pg_search"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", ">= 4.0.1"
 
-# Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
+# Use Kredis to get higher-level data types in Redis
 # gem "kredis"
 
-# Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
+# Use Active Model has_secure_password
 # gem "bcrypt", "~> 3.1.7"
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem "tzinfo-data", platforms: %i[ mswin mswin64 mingw x64_mingw jruby ]
+gem "tzinfo-data", platforms: %i[mswin mswin64 mingw x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
-# Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
+# Use Active Storage variants
 # gem "image_processing", "~> 1.2"
 
+# Bootstrap for styling
 gem "bootstrap", "~> 5.2"
-gem "devise"
-gem "autoprefixer-rails"
-gem "font-awesome-sass", "~> 6.1"
-gem "simple_form", github: "heartcombo/simple_form"
-gem "sassc-rails"
 
-# Cloudinary
+# User authentication with Devise
+gem "devise", "~> 4.9.4"
+
+# Prefix CSS with autoprefixer
+gem "autoprefixer-rails"
+
+# Font Awesome icons
+gem "font-awesome-sass", "~> 6.1"
+
+# Simple form generator
+gem "simple_form", github: "heartcombo/simple_form"
+
+# SASS compiler
+gem "sassc-rails", "~> 2.1.2"
+
+# Cloudinary for cloud-based image management
 gem "cloudinary"
 
-
-
 group :development, :test do
-
   gem "geocoder"
-  gem "dotenv-rails"
-  # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri mswin mswin64 mingw x64_mingw ]
+  gem "dotenv-rails", "~> 3.1.2"
+  gem "debug", "~> 1.9.2", platforms: %i[mri mswin mswin64 mingw x64_mingw]
 end
 
 group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
+  # Use console on exceptions pages
   gem "web-console"
 
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-
+  # Add error highlighting
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
 
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
+  # Use system testing
   gem "capybara"
   gem "selenium-webdriver"
 end
