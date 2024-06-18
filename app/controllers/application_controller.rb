@@ -3,6 +3,3 @@ class ApplicationController < ActionController::Base
 end
 
 
-
-APP CONTROLLER TEST TYPING
-Adding New Line
