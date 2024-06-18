@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-ruby "3.2.3"  # Adjust the Ruby version to match your environment
+ruby "3.2.3"
 
 # Rails framework
-gem "rails", "~> 7.1.3"
+gem "rails", "7.1.3.2"
 
 # Asset pipeline
 gem "sprockets-rails"
@@ -15,13 +15,13 @@ gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 
 # JavaScript modules with ESM import maps
-gem "importmap-rails"
+gem "importmap-rails", "2.0.1"
 
 # Hotwire Turbo
-gem "turbo-rails"
+gem "turbo-rails", "2.0.5"
 
 # Stimulus JS framework
-gem "stimulus-rails"
+gem "stimulus-rails", "1.3.3"
 
 # Build JSON APIs with Jbuilder
 gem "jbuilder"
@@ -57,7 +57,7 @@ gem "bootsnap", require: false
 gem "bootstrap", "~> 5.2"
 
 # User authentication with Devise
-gem "devise"
+gem "devise", "4.9.4"
 
 # Prefix CSS with autoprefixer
 gem "autoprefixer-rails"
@@ -69,20 +69,20 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 
 # SASS compiler
-gem "sassc-rails"
+gem "sassc-rails", "2.1.2"
 
 # Cloudinary for cloud-based image management
 gem "cloudinary"
 
 group :development, :test do
   gem "geocoder"
-  gem "dotenv-rails"
-  gem "debug", platforms: %i[mri mswin mswin64 mingw x64_mingw]
+  gem "dotenv-rails", "3.1.2"
+  gem "debug", "1.9.2", platforms: %i[mri mswin mswin64 mingw x64_mingw]
 end
 
 group :development do
   # Use console on exceptions pages
-  gem "web-console"
+  gem "web-console", "4.2.1"
 
   # Speed up commands on slow machines / big apps
   # gem "spring"
