@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.1.2"
+ruby "3.2.3"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
@@ -49,6 +49,13 @@ gem "devise"
 gem "autoprefixer-rails"
 gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
+gem "friendly_id", "~> 5.4"
+gem "rails-i18n", "~> 6.0"
+
+
+
+
+
 gem "sassc-rails"
 
 group :development, :test do
