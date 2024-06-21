@@ -1,12 +1,22 @@
+
+
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: rgb(0, 0, 0);
+  color: white; /* Set text color to white */
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+  color: white; /* Set text color to white */
 }
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
+  width: 60px;
+}
+
+.navbar-lewagon .nav-link,
+.navbar-lewagon .dropdown-item,
+.navbar-lewagon .navbar-toggler-icon {
+  color: white !important; /* Ensure all text inside navbar is white */
 }
