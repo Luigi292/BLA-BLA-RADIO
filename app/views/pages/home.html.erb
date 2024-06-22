@@ -6,15 +6,21 @@
   <title>Bla Bla Radio</title>
   <style>
     /* General styles */
+    html {
+      background-color: black;
+    }
+
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
+      margin: 0 10%;
       padding: 0;
+      background-color: white;
     }
 
     /* Banner section with pseudo-random background */
     .banner {
-      height: 800px;
+      height: 600px;
+      position: relative;
       background-size: cover;
       background-position: center;
       color: white;
@@ -22,16 +28,44 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      padding: 0 10%; /* Adjust side padding for responsive design */
     }
 
-    .banner h1 {
-      font-size: 3em;
-      margin-bottom: 0.5em;
+    .banner::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+      z-index: 1;
     }
 
-    .banner p {
-      font-size: 1.5em;
-      margin: 0;
+    .banner div {
+      position: relative;
+      z-index: 2;
+    }
+
+    .banner h1, .banner h2, .banner h3 {
+      margin: 0.5em 0; /* Equal spacing between headings */
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    }
+
+    .banner .btn {
+      margin-top: 20px; /* Adjust as needed */
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .banner .btn:hover {
+      background-color: #0056b3;
     }
 
     /* Split section */
@@ -40,7 +74,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 50px;
-      background-color: #f0f0f0;
+      background-color: white;
     }
 
     .split-section img {
@@ -67,15 +101,13 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 50px;
-      padding-bottom: 10%;
+      padding: 50px 0 10%;
       background-color: #fff; /* Change background color as needed */
     }
 
     .gallery-title {
       font-size: 2em;
       margin-bottom: 5%;
-      padding-top: 5%;
       text-align: center;
     }
 
@@ -93,39 +125,104 @@
     }
 
     .gallery-item img {
-      max-width: 80%; /* Ensures the image does not exceed its natural size */
+      max-width: 100%; /* Ensures the image does not exceed its natural size */
       height: auto; /* Allows the image to adjust its height proportionally */
       object-fit: cover; /* Ensures the image covers the entire container */
     }
 
     /* Footer section */
     .footer {
-      background-color: #333;
+      background-color: black;
       color: white;
       text-align: center;
       margin-top: 5%;
-      padding-top: 2%;
-      padding-bottom: 2%;
-
+      padding: 2% 0;
       bottom: 0;
       width: 100%;
     }
 
+    /* Search section */
+    .search-section {
+      background-color: #f0f0f0; /* Light gray background */
+      padding: 50px 0;
+      text-align: center;
+    }
+
+    .search-section h3 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #333333; /* Dark gray text color */
+    }
+
+    .search-form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .search-input {
+      flex: 1;
+      padding: 15px;
+      border: none;
+      border-radius: 5px 0 0 5px;
+      font-size: 1em;
+    }
+
+    .search-button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 15px 20px;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-button:hover {
+      background-color: #0056b3;
+    }
+
+    .map-container {
+      max-width: 800px;
+      margin: 50px auto;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #map {
+      height: 400px;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Banner Section with Random Background Image from Lorem Picsum -->
+  <!-- Banner Section with Background Image -->
   <div class="banner" style="background-image: url('https://m.media-amazon.com/images/I/91vhgl7+SVL._AC_SL1500_.jpg');">
     <div>
       <h1>Bla Bla Radio</h1>
-      <p>Discover Bands and Join Jam Sessions - Be a Rock Star for a Night</p>
+      <h2>Discover Bands and Join Jam Sessions</h2>
+      <h3>Be a Rock Star for a Night</h3>
+      <a href="<%= new_user_session_path %>" class="btn">Let's Play!</a>
     </div>
   </div>
 
+  <!-- Search Section -->
+  <div class="search-section">
+    <h3>Find a Jam Session near you</h3>
+    <form id="searchForm" class="search-form" action="#" method="get">
+      <input id="locationInput" class="search-input" type="text" placeholder="City, postcode or area">
+      <button id="searchButton" class="search-button" type="submit">Search</button>
+    </form>
+    <div id="map" class="map-container"></div>
+  </div>
+<%#
   <!-- Split Section -->
   <div class="split-section">
-
     <!-- Left side with image -->
     <div>
       <img src="https://live.staticflickr.com/2151/2541230431_90a912680b_n.jpg" alt="Image">
@@ -137,31 +234,30 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
       <p>Phasellus eu velit sit amet diam rhoncus eleifend. Donec volutpat ullamcorper felis. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris.</p>
     </div>
-
-  </div>
+  </div> %>
 
   <!-- Gallery Section -->
   <div class="gallery">
-    <h2 class="gallery-title">Choose what kind of rock star you wanna be today</h2>
+    <h2 class="gallery-title">Choose what kind of Rock Star you wanna be today</h2>
 
     <div class="gallery-items">
       <div class="gallery-item">
-        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS6thbWoGnaqH63Y2FdA2XSqE_Xm44zFaHRelfgxkZdZ-vO4WrhftzGWIDATeMmxPFN5p3ONU3IaScOqHVWSQzU5p0gxSsRVh8dYPnF6ypb8ckiFRMHFLib" alt="Drum Home">
+        <img src="https://lh3.googleusercontent.com/spp/AGXu5UkeH5BuL8hFVziQBRspehfTAu5bCF7Vf2HAt5Y57jcDmjTXmSkfToqEmCFeKriHTMxx55L8w3NsyH4vXGQ67wBw13jmsibfZZX5TxPGHCjmLnfcHknTgbgGcT2r9lR-kzcpaBHouKzxbSmhD-jZ3FM4-elROl70NFmAKEz1iM0DhP_D5ew169VrMAnc1o6eUxNCwp8l_A=s512-rw-pd-pc0x00ffffff" alt="Mic Pict">
       </div>
       <div class="gallery-item">
-        <img src="https://m.media-amazon.com/images/I/61xlLUMJksL._AC_SX679_.jpg" alt="Drum Home">
+        <img src="https://www.achamilton.co.uk/Yamaha/Pianos/Pictures/Yamaha_CLP765GP-PE.jpg" alt="Drum Pict">
       </div>
       <div class="gallery-item">
-        <img src="https://virtualpiano.net/wp-content/uploads/2020/08/Virtual-Guitar-Online-Virtual-Piano.png" alt="Guitar Home">
+        <img src="https://virtualpiano.net/wp-content/uploads/2020/08/Virtual-Guitar-Online-Virtual-Piano.png" alt="Guitar Pict">
       </div>
       <div class="gallery-item">
         <img src="https://m.media-amazon.com/images/I/81msNgwxzUL._AC_SL1500_.jpg" alt="Piano Home">
       </div>
       <div class="gallery-item">
-        <img src="https://m.media-amazon.com/images/I/61xlLUMJksL._AC_SX679_.jpg" alt="Drum Home">
+        <img src="https://r2.gear4music.com/media/38/384441/1200/preview_1.jpg" alt="Bass Home">
       </div>
       <div class="gallery-item">
-        <img src="https://m.media-amazon.com/images/I/61xlLUMJksL._AC_SX679_.jpg" alt="Drum Home">
+        <img src="https://loudandproudrecords.com/wp-content/uploads/2023/09/is-the-saxophone-a-woodwind-or-a-brass-instrument-852x1024.png" alt="Sax Pict">
       </div>
     </div>
   </div>
@@ -170,6 +266,79 @@
   <div class="footer">
     <p>&copy; 2024 Bla Bla Radio. All rights reserved.</p>
   </div>
+
+  <!-- Google Maps API script -->
+  <script>
+    let map;
+    let markers = [];
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 12
+      });
+
+      const locationInput = document.getElementById('locationInput');
+      const searchForm = document.getElementById('searchForm');
+
+      searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        performSearch();
+      });
+
+      function performSearch() {
+        const location = locationInput.value.trim();
+
+        // Use geocoding to get coordinates for the location
+        const geocoder = new google.maps.Geocoder();
+        geocoder.geocode({ address: location }, function(results, status) {
+          if (status === 'OK') {
+            const locationLatLng = results[0].geometry.location;
+            map.setCenter(locationLatLng);
+            map.setZoom(12);
+
+            // Remove previous markers
+            markers.forEach(marker => marker.setMap(null));
+            markers = [];
+
+            // Place a marker for the searched location
+            const marker = new google.maps.Marker({
+              position: locationLatLng,
+              map: map,
+              title: 'Searched Location'
+            });
+            markers.push(marker);
+
+            // Simulate fetching music studios near locationLatLng and add markers
+            // Replace this with actual logic to fetch and display music studios
+            fetchMusicStudiosNear(locationLatLng);
+          } else {
+            alert('Geocode was not successful for the following reason: ' + status);
+          }
+        });
+      }
+
+      function fetchMusicStudiosNear(locationLatLng) {
+        // This is where you would implement fetching music studios near the location
+        // and place markers on the map accordingly
+        // Example:
+        const musicStudios = [
+          { name: 'Studio A', latLng: { lat: locationLatLng.lat() + 0.01, lng: locationLatLng.lng() + 0.01 } },
+          { name: 'Studio B', latLng: { lat: locationLatLng.lat() - 0.01, lng: locationLatLng.lng() - 0.01 } }
+        ];
+
+        musicStudios.forEach(studio => {
+          const marker = new google.maps.Marker({
+            position: studio.latLng,
+            map: map,
+            title: studio.name
+          });
+          markers.push(marker);
+        });
+      }
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQ2KFT4zS272SVRIUSgJ2X7UkECYkI_90&callback=initMap"></script>
 
 </body>
 </html>
