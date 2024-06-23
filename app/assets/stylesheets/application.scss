@@ -4,9 +4,10 @@
 @import "config/bootstrap_variables";
 
 // External libraries
-@import "bootstrap";
-@import "font-awesome";
+@import "bootstrap"; // Import Bootstrap styles after variables
+@import "font-awesome"; // Import Font Awesome after other libraries
 
 // Your CSS partials
-@import "components/index";
-@import "pages/index";
+@import "components/index"; // Import your components styles
+@import "pages/index"; // Import general styles for pages
+@import "pages/signupform"; // Import your custom signup form styles

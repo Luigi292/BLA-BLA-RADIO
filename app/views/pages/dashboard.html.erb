@@ -1,0 +1,17 @@
+<h2>Dashboard</h2>
+
+<p>Welcome <%= current_user.first_name %> </p>
+
+<h3>Jam Sessions in Your Location:</h3>
+<ul>
+  <% @jam_sessions.each do |jam_session| %>
+    <li>
+      <strong>Location:</strong> <%= jam_session.location %><br>
+      <strong>Band:</strong> <%= jam_session.band %><br>
+      <strong>Musical Genre:</strong> <%= jam_session.musical_genre %><br>
+      <!-- Add more details as needed -->
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "Create a New Jam Session", new_jam_session_path, class: "btn btn-primary" %>

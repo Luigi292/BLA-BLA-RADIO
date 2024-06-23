@@ -1,0 +1,102 @@
+<div class="container">
+  <h1 class="mt-5 mb-4">Create a New Jam Session</h1>
+
+  <%= form_with(model: @jam_session, url: jam_sessions_path, class: "row g-3") do |form| %>
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :title, class: "form-label" %>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :description, class: "form-label" %>
+        <%= form.text_area :description, class: "form-control", rows: 3 %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :location, class: "form-label" %>
+        <%= form.text_field :location, class: "form-control typeahead", data: { provide: 'typeahead' }, placeholder: "Start typing to search cities..." %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :participants_needed, class: "form-label" %>
+        <%= form.number_field :participants_needed, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :instruments_available, class: "form-label" %>
+        <%= form.select :instruments_available, ['Singer', 'Drummer', 'Bass Player', 'Guitar Player', 'Sax Player'], {}, class: "form-select" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :musical_genre, class: "form-label" %>
+        <%= form.text_field :musical_genre, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="mb-3">
+        <%= form.label :time, class: "form-label" %>
+        <div class="input-group date" id="datetimepicker" data-target-input="nearest">
+          <%= form.text_field :time, class: "form-control datetimepicker-input", data: { target: "#datetimepicker" }, placeholder: "Select Date and Time" %>
+          <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
+      <%= form.submit "Create Jam Session", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+</div>
+
+<%= yield :javascript %> <!-- Optional: Add additional JavaScript specific to this view -->
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const locations = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      prefetch: {
+        url: '/locations.json', // Replace with your route for fetching locations
+        cache: false
+      }
+    });
+
+    $('.typeahead').typeahead({
+      hint: true,
+      highlight: true,
+      minLength: 1
+    }, {
+      name: 'locations',
+      display: 'name',
+      source: locations
+    });
+
+    $('#datetimepicker').datetimepicker({
+      format: 'YYYY-MM-DD HH:mm', // Customize the datetime format as needed
+      icons: {
+        time: 'fa fa-clock-o',
+        date: 'fa fa-calendar',
+        up: 'fa fa-chevron-up',
+        down: 'fa fa-chevron-down',
+        previous: 'fa fa-chevron-left',
+        next: 'fa fa-chevron-right',
+        today: 'fa fa-calendar-check-o',
+        clear: 'fa fa-trash-o'
+      }
+    });
+  });
+</script>

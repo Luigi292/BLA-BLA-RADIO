@@ -1,16 +1,24 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
   root to: "pages#home"
 
-
+  # Static pages
   get 'home', to: 'pages#home'
 
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  # Dashboard route (updated to point to 'pages#dashboard')
+  get 'dashboard', to: 'pages#dashboard', as: :dashboard
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Jam sessions routes
+  resources :jam_sessions, only: [:index, :show, :new, :create, :edit, :update, :destroy]
+
+
+
+  # User-specific routes (optional)
+  resources :users, only: [:show] do
+    # Additional routes related to users can be added here (e.g., profile page)
+  end
+
+  # Health check route
   get "up" => "rails/health#show", as: :rails_health_check
-
-  # Defines the root path route ("/")
-  # root "posts#index"
 end

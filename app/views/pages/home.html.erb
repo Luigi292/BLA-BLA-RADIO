@@ -1,213 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bla Bla Radio</title>
-  <style>
-    /* General styles */
-    html {
-      background-color: black;
-    }
 
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0 10%;
-      padding: 0;
-      background-color: white;
-    }
 
-    /* Banner section with pseudo-random background */
-    .banner {
-      height: 600px;
-      position: relative;
-      background-size: cover;
-      background-position: center;
-      color: white;
-      text-align: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 0 10%; /* Adjust side padding for responsive design */
-    }
-
-    .banner::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
-      z-index: 1;
-    }
-
-    .banner div {
-      position: relative;
-      z-index: 2;
-    }
-
-    .banner h1, .banner h2, .banner h3 {
-      margin: 0.5em 0; /* Equal spacing between headings */
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
-
-    .banner .btn {
-      margin-top: 20px; /* Adjust as needed */
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 1.2em;
-      cursor: pointer;
-      text-decoration: none;
-    }
-
-    .banner .btn:hover {
-      background-color: #0056b3;
-    }
-
-    /* Split section */
-    .split-section {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 50px;
-      background-color: white;
-    }
-
-    .split-section img {
-      max-width: 80%; /* Ensure image does not exceed its container */
-      height: auto; /* Maintain aspect ratio */
-      display: block;
-    }
-
-    .split-section-text {
-      max-width: calc(50% - 20px); /* Half of the container minus padding */
-    }
-
-    .split-section h1 {
-      font-size: 2em;
-      margin-bottom: 0.5em;
-    }
-
-    .split-section p {
-      font-size: 1.2em;
-    }
-
-    /* Gallery section */
-    .gallery {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 50px 0 10%;
-      background-color: #fff; /* Change background color as needed */
-    }
-
-    .gallery-title {
-      font-size: 2em;
-      margin-bottom: 5%;
-      text-align: center;
-    }
-
-    .gallery-items {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      max-width: 100%;
-    }
-
-    .gallery-item {
-      width: 200px; /* Set a fixed width for each gallery item */
-      margin: 10px;
-      text-align: center;
-    }
-
-    .gallery-item img {
-      max-width: 100%; /* Ensures the image does not exceed its natural size */
-      height: auto; /* Allows the image to adjust its height proportionally */
-      object-fit: cover; /* Ensures the image covers the entire container */
-    }
-
-    /* Footer section */
-    .footer {
-      background-color: black;
-      color: white;
-      text-align: center;
-      margin-top: 5%;
-      padding: 2% 0;
-      bottom: 0;
-      width: 100%;
-    }
-
-    /* Search section */
-    .search-section {
-      background-color: #f0f0f0; /* Light gray background */
-      padding: 50px 0;
-      text-align: center;
-    }
-
-    .search-section h3 {
-      font-size: 2.5em;
-      margin-bottom: 30px;
-      color: #333333; /* Dark gray text color */
-    }
-
-    .search-form {
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .search-input {
-      flex: 1;
-      padding: 15px;
-      border: none;
-      border-radius: 5px 0 0 5px;
-      font-size: 1em;
-    }
-
-    .search-button {
-      background-color: #007bff;
-      color: white;
-      border: none;
-      padding: 15px 20px;
-      border-radius: 0 5px 5px 0;
-      cursor: pointer;
-      font-size: 1em;
-      transition: background-color 0.3s ease;
-    }
-
-    .search-button:hover {
-      background-color: #0056b3;
-    }
-
-    .map-container {
-      max-width: 800px;
-      margin: 50px auto;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    #map {
-      height: 400px;
-      width: 100%;
-    }
-  </style>
-</head>
 <body>
 
-  <!-- Banner Section with Background Image -->
   <div class="banner" style="background-image: url('https://m.media-amazon.com/images/I/91vhgl7+SVL._AC_SL1500_.jpg');">
     <div>
       <h1>Bla Bla Radio</h1>
       <h2>Discover Bands and Join Jam Sessions</h2>
       <h3>Be a Rock Star for a Night</h3>
-      <a href="<%= new_user_session_path %>" class="btn">Let's Play!</a>
+      <% if current_user %>
+        <a href="<%= dashboard_path %>" class="btn">Let's Play!</a>
+      <% else %>
+        <a href="<%= new_user_session_path %>" class="btn">Let's Play!</a>
+      <% end %>
     </div>
   </div>
 
@@ -220,26 +24,82 @@
     </form>
     <div id="map" class="map-container"></div>
   </div>
-<%#
-  <!-- Split Section -->
-  <div class="split-section">
-    <!-- Left side with image -->
-    <div>
-      <img src="https://live.staticflickr.com/2151/2541230431_90a912680b_n.jpg" alt="Image">
-    </div>
 
-    <!-- Right side with text -->
-    <div class="split-section-text">
-      <h1>Title Here</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.</p>
-      <p>Phasellus eu velit sit amet diam rhoncus eleifend. Donec volutpat ullamcorper felis. Integer ante arcu, accumsan a, consectetuer eget, posuere ut, mauris.</p>
-    </div>
-  </div> %>
+
+<!-- Best Studios Section -->
+<div class="best-studios-section wrapper grid grid-cols-1 md:gap-16 md:grid-cols-2">
+  <!-- Content for best studios will go here dynamically -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const locationInput = document.getElementById('locationInput');
+    const searchForm = document.getElementById('searchForm');
+
+    searchForm.addEventListener('submit', function(event) {
+      event.preventDefault();
+      performSearch();
+    });
+
+    function performSearch() {
+      const location = locationInput.value.trim();
+
+      // Simulate fetching music studios near location or based on search
+      // Replace with actual logic to fetch studios dynamically
+      const musicStudios = [
+        { name: 'Studio A', image: 'https://example.com/studioA.jpg', description: 'Studio A is known for its acoustic environment.' },
+        { name: 'Studio B', image: 'https://example.com/studioB.jpg', description: 'Studio B offers state-of-the-art recording equipment.' },
+        { name: 'Studio C', image: 'https://example.com/studioC.jpg', description: 'Studio C specializes in live performances and rehearsals.' },
+        { name: 'Studio D', image: 'https://example.com/studioD.jpg', description: 'Studio D provides affordable rates for solo artists.' },
+        { name: 'Studio E', image: 'https://example.com/studioE.jpg', description: 'Studio E offers professional mixing and mastering services.' },
+        { name: 'Studio F', image: 'https://example.com/studioF.jpg', description: 'Studio F is perfect for bands looking to record albums.' }
+      ];
+
+      displayStudios(musicStudios);
+    }
+
+    function displayStudios(studios) {
+      const wrapper = document.querySelector('.best-studios-section');
+      wrapper.innerHTML = ''; // Clear existing content
+
+      studios.slice(0, 6).forEach(studio => {
+        const studioItem = document.createElement('div');
+        studioItem.classList.add('studio-item');
+
+        const studioImage = document.createElement('div');
+        studioImage.classList.add('studio-image');
+        studioImage.style.backgroundImage = `url('${studio.image}')`;
+
+        const studioDetails = document.createElement('div');
+        studioDetails.classList.add('studio-details');
+
+        const studioName = document.createElement('h3');
+        studioName.textContent = studio.name;
+
+        const studioDescription = document.createElement('p');
+        studioDescription.textContent = studio.description;
+
+        studioDetails.appendChild(studioName);
+        studioDetails.appendChild(studioDescription);
+
+        studioItem.appendChild(studioImage);
+        studioItem.appendChild(studioDetails);
+
+        wrapper.appendChild(studioItem);
+      });
+    }
+  });
+</script>
+
+
+</div>
+
+
+
+
+
 
   <!-- Gallery Section -->
   <div class="gallery">
     <h2 class="gallery-title">Choose what kind of Rock Star you wanna be today</h2>
-
     <div class="gallery-items">
       <div class="gallery-item">
         <img src="https://lh3.googleusercontent.com/spp/AGXu5UkeH5BuL8hFVziQBRspehfTAu5bCF7Vf2HAt5Y57jcDmjTXmSkfToqEmCFeKriHTMxx55L8w3NsyH4vXGQ67wBw13jmsibfZZX5TxPGHCjmLnfcHknTgbgGcT2r9lR-kzcpaBHouKzxbSmhD-jZ3FM4-elROl70NFmAKEz1iM0DhP_D5ew169VrMAnc1o6eUxNCwp8l_A=s512-rw-pd-pc0x00ffffff" alt="Mic Pict">
@@ -261,6 +121,96 @@
       </div>
     </div>
   </div>
+
+
+
+
+
+
+<!-- Questions Section -->
+<div class="questions-section wrapper grid grid-cols-1 md:gap-16 md:grid-cols-2">
+  <div class="questions-left">
+    <h2>Any questions?</h2>
+    <h2>We got you.</h2>
+    <p class="pt-12 font-light">Our FAQ section is a great place to start if you've got a question about your local jam sessions, how we operate, what to expect or want more details on partnering with us.</p>
+  </div>
+  <div class="questions-right">
+    <div class="accordion mx-auto my-8 w-full">
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>How does Bla Bla Radio work?</span>
+          <svg class="w-6 h-6 shrink-0" fill="none" height="24" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" width="24">
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
+        </div>
+        <div class="accordion-body">
+          <p class="mb-4 font-light">Bla Bla Radio is a platform that connects musicians with local jam sessions. Simply search for sessions in your area, join them, and enjoy playing music with fellow musicians.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>How can I join a jam session?</span>
+          <svg class="w-6 h-6 shrink-0" fill="none" height="24" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" width="24">
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
+        </div>
+        <div class="accordion-body">
+          <p class="mb-4 font-light">To join a jam session, simply find a session on our platform that suits your schedule, click the 'Join' button, and confirm your participation. Make sure your name appears on the attendee list.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>Can anybody create a new jam session?</span>
+          <svg class="w-6 h-6 shrink-0" fill="none" height="24" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" width="24">
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
+        </div>
+        <div class="accordion-body">
+          <p class="mb-4 font-light">Yes, you can create a new jam session to connect with other musicians in your area. Just click on the 'Create Session' button and provide the necessary details to get started.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>What equipment do I need for a jam session?</span>
+          <svg class="w-6 h-6 shrink-0" fill="none" height="24" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" width="24">
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
+        </div>
+        <div class="accordion-body">
+          <p class="mb-4 font-light">You typically need to bring your own instrument and any personal gear (like guitar picks, drumsticks, etc.). Some venues may provide larger equipment like drum kits and amplifiers, but it's best to check beforehand.</p>
+        </div>
+      </div>
+      <div class="accordion-item">
+        <div class="accordion-header">
+          <span>Are there any fees to join a jam session?</span>
+          <svg class="w-6 h-6 shrink-0" fill="none" height="24" shape-rendering="geometricPrecision" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" width="24">
+            <path d="M6 9l6 6 6-6"></path>
+          </svg>
+        </div>
+        <div class="accordion-body">
+          <p class="mb-4 font-light">While many jam sessions are free, some may have a small fee to cover venue costs or equipment rental. The details will be provided in the session description on our platform.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const headers = document.querySelectorAll(".accordion-header");
+    headers.forEach(header => {
+      header.addEventListener("click", function () {
+        const body = this.nextElementSibling;
+        body.classList.toggle("active");
+        const svg = this.querySelector("svg");
+        svg.classList.toggle("rotate-180");
+      });
+    });
+  });
+</script>
+
+
+
 
   <!-- Footer Section -->
   <div class="footer">
