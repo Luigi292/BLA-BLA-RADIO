@@ -71,19 +71,23 @@
   width: 100%;
 }
 
-.right-side .form-actions .submit-button {
+.right-side .form-actions .submit-button,
+.right-side .form-actions .login-button {
   display: block;
-  width: 100%;
-  background-color: #007bff;
-  color: white;
-  border: none;
+  width: 60%; // Reduced width for a more professional look
+  margin: 0 auto 10px; // Center the button and add margin
   padding: 12px 20px;
   font-size: 16px;
   text-align: center;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  margin-bottom: 10px; // Add margin between buttons
+}
+
+.right-side .form-actions .submit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
 }
 
 .right-side .form-actions .submit-button:hover {
@@ -100,30 +104,24 @@
   cursor: not-allowed;
 }
 
-.right-side .form-actions p {
-  margin-top: 10px;
-  font-size: 14px;
-}
-
-.right-side .form-actions p a.login-button {
-  display: block;
-  width: 100%;
+.right-side .form-actions .login-button {
   background-color: #28a745;
   color: white;
-  padding: 12px 20px;
-  font-size: 16px;
-  text-align: center;
-  cursor: pointer;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
   text-decoration: none; // Remove underline from link button
+  border: none;
 }
 
-.right-side .form-actions p a.login-button:hover {
+.right-side .form-actions .login-button:hover {
   background-color: #218838;
 }
 
-.right-side .form-actions p a.login-button:focus {
+.right-side .form-actions .login-button:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.4);
+}
+
+.right-side .form-actions p {
+  margin-top: 10px;
+  font-size: 14px;
+  text-align: center;
 }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_22_210033) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_25_160133) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -77,16 +77,24 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_22_210033) do
     t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
-  create_table "jam_sessions", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
+  create_table "jam_session_participants", force: :cascade do |t|
+    t.bigint "jam_session_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["jam_session_id"], name: "index_jam_session_participants_on_jam_session_id"
+    t.index ["user_id"], name: "index_jam_session_participants_on_user_id"
+  end
+
+  create_table "jam_sessions", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "location"
-    t.integer "creator_id"
+    t.datetime "time"
+    t.bigint "creator_id", null: false
     t.index ["creator_id"], name: "index_jam_sessions_on_creator_id"
-    t.index ["user_id"], name: "index_jam_sessions_on_user_id"
   end
 
   create_table "job_skills", force: :cascade do |t|
@@ -170,7 +178,9 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_22_210033) do
   add_foreign_key "applications", "users"
   add_foreign_key "cover_letters", "users"
   add_foreign_key "experiences", "users"
-  add_foreign_key "jam_sessions", "users"
+  add_foreign_key "jam_session_participants", "jam_sessions"
+  add_foreign_key "jam_session_participants", "users"
+  add_foreign_key "jam_sessions", "users", column: "creator_id"
   add_foreign_key "job_skills", "jobs"
   add_foreign_key "job_skills", "skills"
   add_foreign_key "jobs", "users"

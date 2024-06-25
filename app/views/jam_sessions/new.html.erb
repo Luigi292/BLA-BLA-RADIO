@@ -5,7 +5,7 @@
     <div class="col-md-6">
       <div class="mb-3">
         <%= form.label :title, class: "form-label" %>
-        <%= form.text_field :title, class: "form-control" %>
+        <%= form.text_field :title, class: "form-control", required: true %>
       </div>
     </div>
 
@@ -48,7 +48,7 @@
       <div class="mb-3">
         <%= form.label :time, class: "form-label" %>
         <div class="input-group date" id="datetimepicker" data-target-input="nearest">
-          <%= form.text_field :time, class: "form-control datetimepicker-input", data: { target: "#datetimepicker" }, placeholder: "Select Date and Time" %>
+          <%= form.text_field :time, class: "form-control datetimepicker-input", data: { target: "#datetimepicker" }, placeholder: "Select Date and Time", required: true %>
           <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
           </div>
