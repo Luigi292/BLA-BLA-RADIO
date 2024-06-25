@@ -12,20 +12,26 @@
           <li class="nav-item">
             <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
-          <li class="nav-item">
-            <%= link_to "Messages", "#", class: "nav-link" %>
+           <li class="nav-item">
+            <%= link_to "About Us", root_path, class: "nav-link" %>
           </li>
+
           <li class="nav-item dropdown">
             <a href="#" class="avatar nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar", alt: "User Avatar" %>
+              <%= gravatar_image_tag(current_user, size: 30, default: 'identicon', rating: 'g', secure: true) %>
             </a>
-            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+            <div class="dropdown-main">
+            <ul class="dropdown-menu dropdown-menu-end bg-black" aria-labelledby="navbarDropdown">
               <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
-              <%= link_to "Another action", "#", class: "dropdown-item" %>
+              <%= link_to "Profile", "#", class: "dropdown-item" %>
+              <%= link_to "Bookings", "#", class: "dropdown-item" %>
+
               <%= link_to "Log out", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item" %>
             </ul>
           </li>
         </ul>
+        </div>
       </div>
     <% else %>
       <%= link_to "Home", root_path, class: "nav-link" %>

@@ -75,6 +75,9 @@ gem "sassc-rails", "~> 2.1.2"
 # Cloudinary for cloud-based image management
 gem "cloudinary"
 
+# Gravatar for fetching avatars based on email
+gem 'gravatar_image_tag'
+
 group :development, :test do
   gem "geocoder"
   gem "dotenv-rails", "~> 3.1.2"

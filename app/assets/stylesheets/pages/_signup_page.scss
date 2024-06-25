@@ -1,20 +1,19 @@
-// _signupform.scss
-
-
 .container {
   display: flex;
-  width: 80%;
-  max-width: 1200px;
-  height: 80vh;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   background-color: #ffffff;
   border-radius: 10px;
   overflow: hidden;
+  margin: 5% auto; // Add top margin to accommodate the navbar
+  align-items: center;
 }
 
 .left-side {
   flex: 1;
-  background-color: #e0e0e0; // Change this to your preferred background color
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -32,6 +31,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center; // Center content horizontally
 }
 
 .right-side h2 {
@@ -41,7 +41,12 @@
   margin-bottom: 20px;
 }
 
+.form {
+  width: 90%;
+}
+
 .right-side .form-inputs {
+  width: 100%; // Make inputs take full width
   margin-bottom: 20px;
 }
 
@@ -63,30 +68,34 @@
 
 .right-side .form-actions {
   text-align: center;
+  width: 100%;
 }
 
-.right-side .form-actions button {
+.right-side .form-actions .submit-button {
+  display: block;
+  width: 100%;
   background-color: #007bff;
   color: white;
   border: none;
   padding: 12px 20px;
   font-size: 16px;
+  text-align: center;
   cursor: pointer;
   border-radius: 4px;
   transition: background-color 0.3s ease;
-  width: 100%;
+  margin-bottom: 10px; // Add margin between buttons
 }
 
-.right-side .form-actions button:hover {
+.right-side .form-actions .submit-button:hover {
   background-color: #0056b3;
 }
 
-.right-side .form-actions button:focus {
+.right-side .form-actions .submit-button:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.4);
 }
 
-.right-side .form-actions button:disabled {
+.right-side .form-actions .submit-button:disabled {
   opacity: 0.65;
   cursor: not-allowed;
 }
@@ -96,11 +105,25 @@
   font-size: 14px;
 }
 
-.right-side .form-actions p a {
-  color: #007bff;
-  text-decoration: none;
+.right-side .form-actions p a.login-button {
+  display: block;
+  width: 100%;
+  background-color: #28a745;
+  color: white;
+  padding: 12px 20px;
+  font-size: 16px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-decoration: none; // Remove underline from link button
 }
 
-.right-side .form-actions p a:hover {
-  text-decoration: underline;
+.right-side .form-actions p a.login-button:hover {
+  background-color: #218838;
+}
+
+.right-side .form-actions p a.login-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.4);
 }

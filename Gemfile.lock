@@ -150,6 +150,7 @@ GEM
       csv (>= 3.0.0)
     globalid (1.2.1)
       activesupport (>= 6.1)
+    gravatar_image_tag (1.2.0)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -333,6 +334,7 @@ DEPENDENCIES
   faker
   font-awesome-sass (~> 6.1)
   geocoder
+  gravatar_image_tag
   importmap-rails (~> 2.0.1)
   jbuilder
   pg (~> 1.1)

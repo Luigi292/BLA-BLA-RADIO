@@ -1,4 +1,4 @@
-
+// app/assets/stylesheets/components/_navbar.scss
 
 .navbar-lewagon {
   justify-content: space-between;
@@ -8,15 +8,31 @@
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
-  color: white; /* Set text color to white */
 }
 
 .navbar-lewagon .navbar-brand img {
   width: 60px;
 }
 
+.dropdown-main {
+ color: red;
+}
+
+.dropdown-menu {
+  background-color: #000000; /* Black background color */
+  color: #ffffff; /* White text color (optional) */
+}
+
 .navbar-lewagon .nav-link,
 .navbar-lewagon .dropdown-item,
 .navbar-lewagon .navbar-toggler-icon {
   color: white !important; /* Ensure all text inside navbar is white */
+  transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.navbar-lewagon .nav-link:hover,
+.navbar-lewagon .dropdown-item:hover,
+.navbar-lewagon .navbar-toggler-icon:hover {
+  color: red !important; /* Red color on hover */
+  background-color: black; /* Black background on hover */
 }

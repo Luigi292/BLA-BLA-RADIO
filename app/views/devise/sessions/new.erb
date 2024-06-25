@@ -1,20 +1,37 @@
-<h2>Log in</h2>
+<!-- app/views/devise/sessions/new.html.erb -->
 
-<%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="form-inputs">
-    <%= f.input :email,
-                required: false,
-                autofocus: true,
-                input_html: { autocomplete: "email" } %>
-    <%= f.input :password,
-                required: false,
-                input_html: { autocomplete: "current-password" } %>
-    <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+<div class="container">
+  <div class="left-side">
+    <%= image_tag "https://i.discogs.com/buJIX9aRSNkK7vCcdCsy4SOD5alwRWzI5iL89kQSJXM/rs:fit/g:sm/q:90/h:303/w:303/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9MLTI1ODc5/LTE1OTQzOTUwNzMt/MzAzNC5qcGVn.jpeg" %>
   </div>
+  <div class="right-side">
+    <h2>Log in</h2>
 
-  <div class="form-actions">
-    <%= f.button :submit, "Log in" %>
+    <div class="form">
+      <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= f.error_notification %>
+
+        <div class="form-inputs">
+          <%= f.input :email,
+                      required: false,
+                      autofocus: true,
+                      input_html: { autocomplete: "email" } %>
+          <%= f.input :password,
+                      required: false,
+                      input_html: { autocomplete: "current-password" } %>
+              <div class="remember-me">
+            <%= f.input :remember_me, as: :boolean, label: false, wrapper_class: 'checkbox' %>
+            <%= f.label :remember_me, "Remember me", class: 'remember-me-label' %>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <%= f.button :submit, "Log in", class: 'submit-button' %>
+        </div>
+      <% end %>
+<div class="links-container">
+  <%= render "devise/shared/links" %>
+</div>
+    </div>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
