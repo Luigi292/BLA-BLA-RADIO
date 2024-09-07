@@ -1,9 +1,7 @@
-# Gemfile
-
 source "https://rubygems.org"
 
 # Specify the Ruby version to use
-ruby "3.2.4"
+ruby "3.2.3"
 
 # Rails and its components
 gem "rails", "7.1.4"
@@ -12,7 +10,7 @@ gem "stimulus-rails", "1.3.4"
 
 # Other gems
 gem "sprockets-rails"
-gem "pg", "~> 1.1"
+gem "pg", "~> 1.2"  # Loosen version constraint for pg
 gem "puma", ">= 5.0"
 gem "importmap-rails", "~> 2.0.1"
 gem "jbuilder"
@@ -32,6 +30,7 @@ gem "gravatar_image_tag"
 
 # Grouping gems for development and test environments
 group :development, :test do
+  gem "rspec-rails", "~> 6.0"  # Add RSpec
   gem "geocoder"
   gem "dotenv-rails", "~> 3.1.2"
   gem "debug", "~> 1.9.2", platforms: %i[mri mswin mswin64 mingw x64_mingw]
@@ -47,4 +46,5 @@ end
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
+  gem "webdrivers"  # Optional: Ensure browser drivers are installed for Selenium
 end
