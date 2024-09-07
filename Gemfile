@@ -2,13 +2,13 @@
 
 source "https://rubygems.org"
 
-ruby "3.2.4"  # Updated to match your installed Ruby version
+# Specify the Ruby version to use
+ruby "3.2.4"
 
 # Rails and its components
 gem "rails", "7.1.4"
 gem "turbo-rails", "2.0.6"
 gem "stimulus-rails", "1.3.4"
-
 
 # Other gems
 gem "sprockets-rails"
@@ -28,19 +28,22 @@ gem "font-awesome-sass", "~> 6.1"
 gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails", "~> 2.1.2"
 gem "cloudinary"
-gem 'gravatar_image_tag'
+gem "gravatar_image_tag"
 
+# Grouping gems for development and test environments
 group :development, :test do
   gem "geocoder"
   gem "dotenv-rails", "~> 3.1.2"
   gem "debug", "~> 1.9.2", platforms: %i[mri mswin mswin64 mingw x64_mingw]
 end
 
+# Gems specific to development
 group :development do
   gem "web-console"
   gem "error_highlight", ">= 0.4.0", platforms: [:ruby]
 end
 
+# Gems specific to test environment
 group :test do
   gem "capybara"
   gem "selenium-webdriver"
