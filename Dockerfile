@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Define the Ruby version as an argument
-ARG RUBY_VERSION=3.2.4
+ARG RUBY_VERSION=3.2.3
 FROM ruby:${RUBY_VERSION}-slim as base
 
 # Define the working directory
